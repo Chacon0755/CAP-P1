@@ -1,3 +1,4 @@
 def main():
     print("Bienvenido a MMAS")
-    print("Ingrese la opci")
+    print("Ingrese la opcion de su preferencia")
+    
