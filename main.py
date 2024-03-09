@@ -11,27 +11,31 @@ sys.path.append("CAP-P1\\listOfEmployees")
 from listOfEmployees import employeesList
 
 employees = []
+deletedEmployees = []
 
 def main():
     option = 0
     print("Welcome to MMAS")
     while option !=6:
-        print("MENU\n1. Add Employee \n2.Edit Employee \n3.Search Employee \n4. Delete Employee \n5. List of employees \n6. Exit")
-        option = int(input("Enter your favorite option:"))
+        print("MENU\n1. Add Employee \n2. Edit Employee name and password \n3. Search Employee \n4. Delete Employee \n5. List of employees \n6. Exit")
+        option = int(input("Enter your favorite option: "))
         print("------------------------------------------------------------")
         match option:
             case 1:
                 print("Add Employee")
                 add()
             case 2:
-                print("Edit Employee")
-                editFun.edit()
+                print("Edit Employee name")
+                employeesList.showListOfEmployees(employees)
+                editFun.edit(employees)
             case 3:
                 print("Search Employee")
-                searchFun.search()
+                employeesList.showListOfEmployees(employees)
+                searchFun.search(employees)
             case 4:
                 print("Delete Employee")
-                deleteFun.delete()
+                employeesList.showListOfEmployees(employees)
+                deleteFun.delete(employees, deletedEmployees)
             case 5:
                 employeesList.showListOfEmployees(employees)
             case 6:
