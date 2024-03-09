@@ -1,4 +1,5 @@
-employees = {}
+import random
+employees = []
 
 def main():
     print("Welcome to MMAS")
@@ -7,6 +8,7 @@ def main():
     match option:
         case 1:
             print("Add Employee")
+            add()
         case 2:
             print("Edit Employee")
         case 3:
@@ -14,7 +16,22 @@ def main():
         case 4:
             print("Delete Employee")
     
-    
+def add():
+    name = input("Enter your name: ")
+    lastName = input("Enter your last name: ")
+    id  = random.randint(1000,9999)
+    email = ""
+    password = input("Enter your password: ")
+    employee = {
+        'id': id,
+        'name' : name,
+        'lastName': lastName,
+        'email': email,
+        'password' : password
+        }
+
+
+
 
 
 
