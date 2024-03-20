@@ -12,6 +12,7 @@ from listOfEmployees import employeesList
 
 employees = []
 deletedEmployees = []
+verification = True
 
 def main():
     option = 0
@@ -48,7 +49,12 @@ def add():
     lastName = input("Enter your last name: ")
     id  = random.randint(1000,9999)
     email = emailGenerator.generateEmail(name, lastName)
-    password = input("Enter your password: ")
+    password = input("Enter your password of at least 8 characters: ")
+    while True:
+        if len(password) >= 8:
+            break
+        print("The password must contain at least 8 characters")
+        password = input("Enter your password: ")
     employee = {
         'id': id,
         'name' : name,
