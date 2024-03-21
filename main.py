@@ -1,5 +1,6 @@
 import random
 import emailGenerator
+from termcolor import colored
 import sys
 sys.path.append("CAP-P1\\delete")
 from delete import deleteFun
@@ -18,7 +19,7 @@ def main():
     option = 0
     print("Welcome to MMAS")
     while option !=6:
-        print("MENU\n1. Add Employee \n2. Edit Employee name and password \n3. Search Employee \n4. Delete Employee \n5. List of employees \n6. Exit")
+        print(colored("MENU\n1. Add Employee \n2. Edit Employee name and password \n3. Search Employee \n4. Delete Employee \n5. List of employees \n6. Exit", "blue"))
         option = int(input("Enter your favorite option: "))
         print("------------------------------------------------------------")
         match option:
