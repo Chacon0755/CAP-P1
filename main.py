@@ -51,6 +51,7 @@ def add():
     id  = random.randint(1000,9999)
     email = emailGenerator.generateEmail(name, lastName)
     password = input(colored("Enter your password of at least 8 characters: ", "cyan"))
+    seniority = random.randint(1,49)
     while True:
         if len(password) >= 8:
             break
@@ -61,7 +62,8 @@ def add():
         'name' : name,
         'lastName': lastName,
         'email': email,
-        'password' : password
+        'password' : password,
+        'seniority' : seniority
         }
     employees.append(employee)
     print(colored("Employee succesfully added", "green"))

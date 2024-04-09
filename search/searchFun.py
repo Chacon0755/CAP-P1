@@ -7,4 +7,4 @@ def search(employees):
             print(f"Name: {employee['name']}")
             print(f"Last Name: {employee['lastName']}")
             print(f"Email: {employee['email']}")
-            print(f"{random.randint(1,49)} years seniority")
+            print(f"{employee['seniority']} years seniority")
