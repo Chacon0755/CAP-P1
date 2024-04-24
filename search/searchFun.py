@@ -1,7 +1,5 @@
-import random
-def search(employees):
-    employeeToSearch = int(input("Enter the employee id of the employee that you want to view: "))
-    find = False
+
+def search(employees, employeeToSearch):
     for employee in employees:
         if employee['id'] == employeeToSearch:
             print(f"Name: {employee['name']}")
