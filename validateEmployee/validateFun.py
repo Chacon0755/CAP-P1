@@ -1,4 +1,5 @@
 def validateEmployee(employees):
+    employeeIndex = 0
     if len(employees) == 0:
         return 
     while True:
@@ -7,7 +8,8 @@ def validateEmployee(employees):
             employeeInputed = int(employeeStr)
             for employee in employees:
                 if employee['id'] == employeeInputed:
-                    return employeeInputed
+                    return  employeeIndex
+                employeeIndex += 1
         else:
             print("The input must be numeric")
             continue

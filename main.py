@@ -59,8 +59,22 @@ def main():
                 
 
 def add():
-    name = input(colored("Enter your name: ", "cyan"))
-    lastName = input(colored("Enter your last name: ", "cyan"))
+    nameImputed = input(colored("Enter your name: ", "cyan"))
+    while True:
+        if len(nameImputed) > 0 and  not nameImputed.isdigit():
+            name = nameImputed
+            break
+        print(colored("Enter a valid name", "red"))
+        nameImputed = input(colored("Enter your name: ", "cyan"))
+
+    lastNameInputed = input(colored("Enter your last name: ", "cyan"))
+    while True:
+        if len(lastNameInputed) > 0 and not lastNameInputed.isdigit():
+            lastName  = lastNameInputed
+            break
+        print(colored("Enter a valid lastName", "red"))
+        lastNameInputed = input(colored("Enter your last name: ", "cyan"))
+    
     id  = random.randint(1000,9999)
     email = emailGenerator.generateEmail(name, lastName)
     password = input(colored("Enter your password of at least 8 characters: ", "cyan"))
