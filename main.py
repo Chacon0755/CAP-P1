@@ -1,5 +1,7 @@
 import random
 import emailGenerator
+from colorama import init
+init()
 from termcolor import colored
 import sys
 sys.path.append("CAP-P1\\delete")
