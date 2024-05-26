@@ -4,6 +4,7 @@ from colorama import init
 init()
 from termcolor import colored
 import sys
+import threading
 sys.path.append("CAP-P1\\delete")
 from delete import deleteFun
 sys.path.append("CAP-P1\\edit")
@@ -18,6 +19,15 @@ from validateEmployee import validateFun
 employees = []
 deletedEmployees = []
 verification = True
+
+def assign_id(employee):
+    employee['id'] = random.randint(1000, 9999)
+
+def generate_email(employee):
+    employee['email'] = emailGenerator.generateEmail(employee['name'], employee['lastName'])
+
+def assign_seniority(employee):
+    employee['seniority'] = random.randint(1, 49)
 
 def main():
     option = 0
@@ -90,26 +100,48 @@ def add():
         print(colored("Enter a valid lastName", "red"))
         lastNameInputed = input(colored("Enter your last name: ", "cyan"))
 
-    id = random.randint(1000, 9999)
-    email = emailGenerator.generateEmail(name, lastName)
     password = input(colored("Enter your password of at least 8 characters: ", "cyan"))
-    seniority = random.randint(1, 49)
     while True:
         if len(password) >= 8:
             break
         print(colored("The password must contain at least 8 characters", "red"))
         password = input(colored("Enter your password: ", "cyan"))
+
     employee = {
-        'id': id,
         'name': name,
         'lastName': lastName,
-        'email': email,
-        'password': password,
-        'seniority': seniority
+        'password': password
     }
+
+    # Create threads for ID, email, and seniority
+    threads = []
+    threads.append(threading.Thread(target=assign_id, args=(employee,)))
+    threads.append(threading.Thread(target=generate_email, args=(employee,)))
+    threads.append(threading.Thread(target=assign_seniority, args=(employee,)))
+
+    # Start all threads
+    for thread in threads:
+        thread.start()
+
+    # Ensure all threads have finished
+    for thread in threads:
+        thread.join()
+
     employees.append(employee)
     print(colored("Employee successfully added", "green"))
     print("------------------------------------------------------------")
+
+def validateEmployee(employees):
+    while True:
+        employeeStr = input("Enter the employee ID: ")
+        if employeeStr.isdigit():
+            employeeInputed = int(employeeStr)
+            for employeeIndex, employee in enumerate(employees):
+                if employee['id'] == employeeInputed:
+                    return employeeIndex
+        else:
+            print("The input must be numeric")
+        print("Enter a valid ID")
 
 if __name__ == "__main__":
     main()
