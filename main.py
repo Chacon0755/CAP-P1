@@ -113,17 +113,22 @@ def add():
         'password': password
     }
 
-    # Create threads for ID, email, and seniority
+    # THREADS
     threads = []
+    # Create thread for ID
     threads.append(threading.Thread(target=assign_id, args=(employee,)))
+    
+    # Create thread for email
     threads.append(threading.Thread(target=generate_email, args=(employee,)))
+    
+    # Create thread for seniority
     threads.append(threading.Thread(target=assign_seniority, args=(employee,)))
 
     # Start all threads
     for thread in threads:
         thread.start()
 
-    # Ensure all threads have finished
+    # Make sure all threads have finished
     for thread in threads:
         thread.join()
 
@@ -142,6 +147,6 @@ def validateEmployee(employees):
         else:
             print("The input must be numeric")
         print("Enter a valid ID")
-
+        
 if __name__ == "__main__":
     main()

@@ -1,4 +1,7 @@
 
+from termcolor import colored
+
+
 def search(employees, employeeToSearch):
     # for employee in employees:
     #     if employee['id'] == employeeToSearch:
@@ -12,6 +15,8 @@ def search(employees, employeeToSearch):
         print(f"Email: {employees[employeeToSearch]['email']}")
         print(f"{employees[employeeToSearch]['seniority']} years seniority")
         
+    #Where the data input is incomplete or has ended abruptly
+    #EOF= End of File
     except EOFError:
         print(colored(" ╔══════════════════════════╗ ","red"))
         print(colored(" ║     Error: Void list     ║  ","red"))
