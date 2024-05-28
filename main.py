@@ -35,53 +35,52 @@ def main():
     while option != 6:
         print(colored("MENU\n1. Add Employee \n2. Edit Employee name and password \n3. Search Employee \n4. Delete Employee \n5. List of employees \n6. Exit", "green"))
         optionStr = input("Enter your favorite option: ")
-        if optionStr.isdigit():
+        try:
             option = int(optionStr)
-            if 1 <= option <= 6:
-                print("------------------------------------------------------------")
-                match option:
-                    case 1:
-                        print(colored("Add Employee", "blue"))
-                        add()
-                    case 2:
-                        print(colored("Edit Employee name", "blue"))
-                        if employees:
-                            employeesList.showListOfEmployees(employees)
-                            employeeToEdit = validateFun.validateEmployee(employees)
-                            if employeeToEdit is not None:
-                                editFun.edit(employees, employeeToEdit)
-                        else:
-                            print(colored("The employee list is empty.", "red"))
-                    case 3:
-                        print(colored("Search Employee", "blue"))
-                        if employees:
-                            employeesList.showListOfEmployees(employees)
-                            employeeToSearch = validateFun.validateEmployee(employees)
-                            if employeeToSearch is not None:
-                                searchFun.search(employees, employeeToSearch)
-                        else:
-                            print(colored("The employee list is empty.", "red"))
-                    case 4:
-                        print(colored("Delete Employee", "blue"))
-                        if employees:
-                            employeesList.showListOfEmployees(employees)
-                            employeeToDelete = validateFun.validateEmployee(employees)
-                            if employeeToDelete is not None:
-                                deleteFun.delete(employees, deletedEmployees, employeeToDelete)
-                        else:
-                            print(colored("The employee list is empty.", "red"))
-                    case 5:
-                        if employees:
-                            employeesList.showListOfEmployees(employees)
-                        else:
-                            print(colored("The employee list is empty.", "red"))
-                    case 6:
-                        print(colored("Have a nice day!.", "magenta"))
-                        break
-            else:
-                print(colored("The option inputted must be between 1 and 6", "red"))
-        else:
-            print(colored("The input must be numeric", "red"))
+            if not 1 <= option <= 6:
+                raise ValueError("Option must be between 1 and 6")  # Lanza una excepción si la opción está fuera de rango
+            print("------------------------------------------------------------")
+            if option == 1:
+                print(colored("Add Employee", "blue"))
+                add()
+            elif option == 2:
+                print(colored("Edit Employee name", "blue"))
+                if employees:
+                    employeesList.showListOfEmployees(employees)
+                    employeeToEdit = validateFun.validateEmployee(employees)
+                    if employeeToEdit is not None:
+                        editFun.edit(employees, employeeToEdit)
+                else:
+                    print(colored("The employee list is empty.", "red"))
+            elif option == 3:
+                print(colored("Search Employee", "blue"))
+                if employees:
+                    employeesList.showListOfEmployees(employees)
+                    employeeToSearch = validateFun.validateEmployee(employees)
+                    if employeeToSearch is not None:
+                        searchFun.search(employees, employeeToSearch)
+                else:
+                    print(colored("The employee list is empty.", "red"))
+            elif option == 4:
+                print(colored("Delete Employee", "blue"))
+                if employees:
+                    employeesList.showListOfEmployees(employees)
+                    employeeToDelete = validateFun.validateEmployee(employees)
+                    if employeeToDelete is not None:
+                        deleteFun.delete(employees, deletedEmployees, employeeToDelete)
+                else:
+                    print(colored("The employee list is empty.", "red"))
+            elif option == 5:
+                if employees:
+                    employeesList.showListOfEmployees(employees)
+                else:
+                    print(colored("The employee list is empty.", "red"))
+        except ValueError as e:
+            print(colored(str(e), "red"))  # Captura y muestra un ValueError
+        except Exception as e:
+            print(colored("An unexpected error occurred:", "red"), e)  # Captura y muestra cualquier otra excepción no manejada
+
+    print(colored("Have a nice day!.", "magenta"))
 
 def add():
     nameImputed = input(colored("Enter your name: ", "cyan"))
